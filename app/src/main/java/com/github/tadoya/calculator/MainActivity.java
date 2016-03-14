@@ -1,6 +1,7 @@
 package com.github.tadoya.calculator;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +12,13 @@ import android.widget.TextView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private String cnt="0", ac="AC";
+    private boolean landscapeMode;
     String cntTemp="0";
 
     Button  buttonAC, buttonEqual, buttonPlusMinus, buttonPlus, buttonMinus, buttonDivision,
@@ -28,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
             buttonTanh, buttonRand, buttonPi;
     Button buttonMC, buttonMP, buttonMM, buttonMR;
     Button buttonPrtStart, buttonPrtEnd;
-    TextView textView, radText;
+    TextView radText;
+    AutoResizeTextView textView;
 
     String answer="0";
     double memory=0;
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     String temp = "0";
 
     BigDecimal dcmalA,dcmalB, dcmalC; // 소수의 곱하기 나누기
+    //DecimalFormat df = new DecimalFormat("#,###.###############");
+
     char operator='0';                // 연산자
 
     /** caled : '='버튼 눌렀는지에 대한 플레그, errorFlag : x/0 에 대한 플레그
@@ -51,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
     int prtFlagNum = 0;     // 괄호 수(이중괄호 삼중괄호...)
     char prtOperator = '0'; // 괄호 내에서의 연산자
     String prtTemp = "";    // 괄호 누르기 전의 값을 저장하기위한 임시변수
-
-    float textsize;         // 디스플레이 글자크기
 
     /**
      * 버튼 사운드 효과
@@ -77,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //처음 시작시 portrait인지 landscape모드인지 확인
+        if(getResources().getConfiguration().orientation == 1) landscapeMode = false;
+        else landscapeMode = true;
         /**
          * 가로 세로모드 변환에 따른 주요변수 초기화 방지
          */
@@ -89,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         initSound();
 
-        textView = (TextView) findViewById(R.id.textView);
+        textView = (AutoResizeTextView) findViewById(R.id.textView);
         radText = (TextView) findViewById(R.id.radText);
 
         buttonNum[0] = (Button) findViewById(R.id.button0);
@@ -147,34 +154,77 @@ public class MainActivity extends AppCompatActivity {
         buttonPrtStart = (Button) findViewById(R.id.buttonParenthesesStart);    // (
         buttonPrtEnd = (Button) findViewById(R.id.buttonParenthesesEnd);        // )
 
-        // 이유는 모르겠지만 텍스트크기를 두배로 받아와서 나누기 2를 해줌
-        textsize = textView.getTextSize() / 2;
+        // API 21은 xml serif가 안먹힘
+        buttonNum[0].setTypeface(Typeface.SERIF);
+        buttonNum[1].setTypeface(Typeface.SERIF);
+        buttonNum[2].setTypeface(Typeface.SERIF);
+        buttonNum[3].setTypeface(Typeface.SERIF);
+        buttonNum[4].setTypeface(Typeface.SERIF);
+        buttonNum[5].setTypeface(Typeface.SERIF);
+        buttonNum[6].setTypeface(Typeface.SERIF);
+        buttonNum[7].setTypeface(Typeface.SERIF);
+        buttonNum[8].setTypeface(Typeface.SERIF);
+        buttonNum[9].setTypeface(Typeface.SERIF);
 
-        //세로 모드(textsize:80)이고 글자수가 8이상일 때 사이즈 줄이기(안줄이면 두 칸으로 넘어감)
-        if(cnt.length()>=8 && textsize == 80){
-            textView.setTextSize(textsize-18);
+        buttonAC.setTypeface(Typeface.SERIF);
+        buttonEqual.setTypeface(Typeface.SERIF);
+        buttonPlusMinus.setTypeface(Typeface.SERIF);
+        buttonPlus.setTypeface(Typeface.SERIF);
+        buttonMinus.setTypeface(Typeface.SERIF);
+        buttonDivision.setTypeface(Typeface.SERIF);
+        buttonMultiply.setTypeface(Typeface.SERIF);
+        buttonPercent.setTypeface(Typeface.SERIF);
+        buttonDot.setTypeface(Typeface.SERIF);
+
+        if(landscapeMode) {
+            buttonTenX.setTypeface(Typeface.SERIF);
+            buttonEx.setTypeface(Typeface.SERIF);
+            buttonXy.setTypeface(Typeface.SERIF);
+            buttonX2.setTypeface(Typeface.SERIF);
+            buttonX3.setTypeface(Typeface.SERIF);
+            buttonFraction.setTypeface(Typeface.SERIF);
+            buttonRoot.setTypeface(Typeface.SERIF);
+            buttonRoot3.setTypeface(Typeface.SERIF);
+            buttonRooty.setTypeface(Typeface.SERIF);
+            buttonLn.setTypeface(Typeface.SERIF);
+            buttonLog.setTypeface(Typeface.SERIF);
+            buttonEE.setTypeface(Typeface.SERIF);
+            buttonE.setTypeface(Typeface.SERIF);
+            buttonSin.setTypeface(Typeface.SERIF);
+            buttonCos.setTypeface(Typeface.SERIF);
+            buttonTan.setTypeface(Typeface.SERIF);
+            buttonFactorial.setTypeface(Typeface.SERIF);
+            buttonRadian.setTypeface(Typeface.SERIF);
+            buttonSinh.setTypeface(Typeface.SERIF);
+            buttonCosh.setTypeface(Typeface.SERIF);
+            buttonTanh.setTypeface(Typeface.SERIF);
+            buttonRand.setTypeface(Typeface.SERIF);
+            buttonPi.setTypeface(Typeface.SERIF);
+
+            buttonMC.setTypeface(Typeface.SERIF);
+            buttonMP.setTypeface(Typeface.SERIF);
+            buttonMM.setTypeface(Typeface.SERIF);
+            buttonMR.setTypeface(Typeface.SERIF);
+
+            buttonPrtStart.setTypeface(Typeface.SERIF);
+            buttonPrtEnd.setTypeface(Typeface.SERIF);
         }
-        //cntTemp = cnt;
+
+
         // 세로 가로모드를 전활할 때 허용 글자수를 초과하면 지수표기법으로 표시
-        if((((textsize == 80) && (cnt.length() > 10))) || ((textsize == 78) && (cnt.length() > 16))){
-            if((Double.parseDouble(cnt) < 0) && (cnt.length() == 11)) {   // 세로모드에서 11글자에 음수이면 사이즈만 줄이기
-                textView.setTextSize(textsize - 24);
-                cntTemp = cnt;
-            }
-            else if((textsize ==80) && (Double.parseDouble(cnt) < 0)) {  // 세로모드에서 12글자 이상에 음수면 텍스트 사이즈 줄이고 지수표기
-                textView.setTextSize(textsize - 22);
+        if(((!landscapeMode && (cnt.length() > 10))) || (landscapeMode && (cnt.length() > 16))){
+            if(!landscapeMode && (Double.parseDouble(cnt) < 0)) {  // 세로모드에서 11글자 이상에 음수면 지수표기
                 cntTemp = String.format("%.4E",Double.parseDouble(cnt));
             }
             else {
                 cntTemp = String.format("%.4E", Double.parseDouble(cnt));
                 // 지수표기 법에서 E-4미만일 경우 지수표기법이 아닌 일반표기로 출력
                 if((Integer.parseInt(cntTemp.substring(cntTemp.length()-2, cntTemp.length())))<4){
-                    if(textsize==80) {
+                    if(!landscapeMode) {
                         cntTemp = cnt.substring(0, 10);
                     }
                     else {
                         cntTemp = cnt.substring(0, 16);
-                        textView.setTextSize(textsize-18);
                     }
                 }
             }
@@ -183,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
         else{
             textView.setText(cnt);
         }
-
         buttonAC.setText(ac);
 
     }
@@ -202,9 +251,8 @@ public class MainActivity extends AppCompatActivity {
             prtEndFlag = false;
             prtTemp = "";
             caled = false;
-            textView.setTextSize(textsize);
         }
-        if(((textsize == 78 && number.length()<16) || (textsize == 80 && number.length()<10))&& !number.contains("E")) {
+        if(((landscapeMode && number.length()<16) || (!landscapeMode && number.length()<10))&& !number.contains("E")) {
             switch (v.getId()) {
                 case R.id.button0:
                 case R.id.button10:
@@ -243,14 +291,8 @@ public class MainActivity extends AppCompatActivity {
                     else number += ".";
                     break;
             }
-            textView.setText(number);
+            textView.setText(number);//f.format(Double.parseDouble(number)));
             playSound();
-
-            // 한줄을 넘어갔을 때 글자크기를 조절하여 한줄로 보이기
-            if(textView.getLineCount() > 1){ //를 쓸 경우 가로세로 전환 시 문제 발생
-            //if((textsize==80 && number.length()>=8)||(textsize==78 && number.length()>=14)){
-                textView.setTextSize(textsize-18);
-            }
             buttonAC.setText("C");
             cnt = number;
         }
@@ -264,7 +306,6 @@ public class MainActivity extends AppCompatActivity {
                 answer = "0";
                 temp = "0";
                 buttonAC.setText("AC");
-                textView.setTextSize(textsize);
                 caled = false;
                 errorFlag = false;
                 prtFlag = false;
@@ -272,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
                 prtOperator = '0';
                 prtFlagNum = 0;
                 prtTemp = "";
-                if(textsize==78) {
+                if(landscapeMode) {
                     buttonPrtStart.setTextColor(Color.BLACK);
                     buttonPrtEnd.setTextColor(Color.BLACK);
                 }
@@ -284,24 +325,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (answer.charAt(0) == '-') {
                     answer = answer.replaceFirst("-", "");
                     number = number.replaceFirst("-", "");
-
-                    //세로모드에서 지수표기법이거나, 세로모드에서 8글자 이상일 때
-                    if((answer.contains("E") && textsize == 80) || ((textsize==80) && (answer.length() >= 9))){
-                        textView.setTextSize(textsize-18);
-                    }
-                    else if((textsize == 80 && answer.length() <= 8)||(textsize==78 && answer.length() <=13)){
-                        textView.setTextSize(textsize);
-                    }
                 } else {
-                    if(answer.contains("E")  && textsize == 80){
-                        textView.setTextSize(textsize-20);
-                    }
-                    else if(textsize==80 && answer.length()>9){
-                        textView.setTextSize(textsize-22);
-                    }
-                    else if((textsize==80 && answer.length() >= 8)||(textsize==78 && answer.length() >=13)){
-                        textView.setTextSize(textsize-18);
-                    }
                     answer = "-" + answer;
                     number = "-" + number;
                 }
@@ -313,15 +337,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.buttonE:
                 answer = String.valueOf(Math.exp(1));
-                textView.setTextSize(textsize-18);
                 break;
             case R.id.buttonPi:
                 answer = String.valueOf(Math.PI);
-                textView.setTextSize(textsize-18);
                 break;
             case R.id.buttonRand:
                 answer = String.valueOf(Math.random());
-                textView.setTextSize(textsize-18);
                 break;
             default:
                 break;
@@ -368,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
     /* 라디안 */
     public void onClick_RAD(View v){
         if(!radFlag){
-            radText.setText("Radian");
+            radText.setText("Radian ");
             radFlag = true;
         }
         else{
@@ -938,7 +959,7 @@ public class MainActivity extends AppCompatActivity {
                 cnt = "" + (long) Double.parseDouble(answer);
                 answer = cnt;
                 // 가로모드(16자 초과)이거나 세로모드(10자 초과)일 때 지수 표기법으로 출력(음수일땐 11자)
-                if((((answer).length() > 16) && (textsize == 78)) || ((((answer.length() > 10) && (answer.charAt(0) != '-')) || ((answer.length() > 11) && (answer.charAt(0) == '-'))) && (textsize == 80))) {
+                if((((answer).length() > 16) && landscapeMode) || ((((answer.length() > 10) && (answer.charAt(0) != '-')) || ((answer.length() > 11) && (answer.charAt(0) == '-'))) && !landscapeMode)) {
                     answer = String.format("%.4E",Double.parseDouble(answer));
                 }
                 textView.setText(answer);
@@ -946,11 +967,11 @@ public class MainActivity extends AppCompatActivity {
             else{
                 cnt = answer;
                 // 가로모드(16자 초과)이거나 세로모드(10자 초과)일 때 지수 표기법으로 츨력
-                if((((answer).length() > 16) && (textsize == 78)) || ((((answer.length() > 10) && (answer.charAt(0) != '-')) || ((answer.length() > 11) && (answer.charAt(0) == '-'))) && (textsize == 80))) {
+                if((((answer).length() > 16) && landscapeMode) || ((((answer.length() > 10) && (answer.charAt(0) != '-')) || ((answer.length() > 11) && (answer.charAt(0) == '-'))) && !landscapeMode)) {
                     answer = String.format("%.4E",Double.parseDouble(answer));
                     // 지수표기법이 E-4까지는 그냥 지수 표기법이 아닌 일반 표기법으로 출력
                     if(Integer.parseInt(answer.substring(answer.length()-2,answer.length())) < 4){
-                        if(textsize==80)
+                        if(!landscapeMode)
                             answer = cnt.substring(0, 10);
                         else
                             answer = cnt.substring(0, 16);
@@ -959,10 +980,7 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(answer);
             }
         }
-        // 글자크기 조정(출력결과가 2줄을 넘어가면 글자크기 줄이기)
-        if(textView.getLineCount() > 1){
-            textView.setTextSize(textsize-18);
-        }
+
     }
     @Override
     protected void onSaveInstanceState(Bundle outState){    //화면 가로세로 전환 시 값 유지

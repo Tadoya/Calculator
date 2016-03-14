@@ -16,20 +16,19 @@
         android:layout_alignParentBottom="false"
         android:layout_alignParentRight="false">
 
-        <TextView
+        <com.github.tadoya.calculator.AutoResizeTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="0"
             android:id="@+id/textView"
-            android:textColor="#ffffff"
-            android:textSize="80sp"
-            android:singleLine="false"
-            android:maxLength="11"
-            android:cursorVisible="false"
-            android:maxLines="1"
-            android:gravity="bottom|end"
             android:layout_weight="3"
-            android:textAlignment="gravity" />
+            android:text="0"
+            android:textSize="70sp"
+            android:textColor="#ffffff"
+            android:textAlignment="gravity"
+            android:gravity="bottom|end"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:longClickable="true" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -54,7 +53,6 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
                     android:layout_height="fill_parent"
                     android:layout_width="fill_parent"
@@ -62,7 +60,8 @@
                     android:focusableInTouchMode="false"
                     android:enabled="true"
                     android:cursorVisible="false"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -78,9 +77,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Option" />
+                    android:onClick="onClick_Option"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -96,9 +95,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Option" />
+                    android:onClick="onClick_Option"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -115,9 +114,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Calc" />
+                    android:onClick="onClick_Calc"
+                    android:textSize="33sp" />
             </TableRow>
 
             <TableRow
@@ -137,11 +136,11 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
                     android:layout_height="fill_parent"
                     android:layout_width="fill_parent"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -157,9 +156,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -175,9 +174,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -196,9 +195,9 @@
                     android:textColor="#ffffff"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Calc" />
+                    android:onClick="onClick_Calc"
+                    android:textSize="33sp" />
             </TableRow>
 
             <TableRow
@@ -218,11 +217,11 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
                     android:layout_height="fill_parent"
                     android:layout_width="fill_parent"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -238,9 +237,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -256,9 +255,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -275,9 +274,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Calc" />
+                    android:onClick="onClick_Calc"
+                    android:textSize="33sp" />
             </TableRow>
 
             <TableRow
@@ -293,16 +292,16 @@
                     android:clickable="true"
                     android:layout_margin="0.1dp"
                     android:background="#dcd9d9"
-                    android:typeface="serif"
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
                     android:layout_height="fill_parent"
                     android:layout_width="fill_parent"
                     android:layout_span="1"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp"
+                    android:typeface="serif" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -318,9 +317,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -336,9 +335,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -355,9 +354,9 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_weight="1"
-                    android:onClick="onClick_Calc" />
+                    android:onClick="onClick_Calc"
+                    android:textSize="33sp" />
             </TableRow>
 
             <TableRow
@@ -374,7 +373,6 @@
                     android:background="#dcd9d9"
                     android:typeface="serif"
                     android:allowUndo="false"
-                    android:textSize="33sp"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="2"
                     android:layout_height="fill_parent"
@@ -384,7 +382,8 @@
                     android:layout_marginLeft="0.1dp"
                     android:layout_marginTop="0.1dp"
                     android:layout_marginBottom="0.1dp"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:id="@+id/button10"
@@ -393,7 +392,6 @@
                     android:background="#dcd9d9"
                     android:typeface="serif"
                     android:allowUndo="false"
-                    android:textSize="33sp"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="2"
                     android:layout_height="fill_parent"
@@ -418,10 +416,10 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_column="2"
                     android:layout_weight="1"
-                    android:onClick="onClick_Num" />
+                    android:onClick="onClick_Num"
+                    android:textSize="33sp" />
 
                 <Button
                     android:layout_width="fill_parent"
@@ -437,13 +435,14 @@
                     android:layout_rowWeight="1"
                     android:allowUndo="false"
                     android:layout_columnWeight="1"
-                    android:textSize="33sp"
                     android:layout_column="3"
                     android:layout_weight="1"
-                    android:onClick="onClick_Answer" />
+                    android:onClick="onClick_Answer"
+                    android:textSize="33sp" />
             </TableRow>
 
         </TableLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
