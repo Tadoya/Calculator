@@ -363,13 +363,6 @@ public class MainActivity extends AppCompatActivity {
             buttonSinh.setText("sinh⁻¹");
             buttonCosh.setText("cosh⁻¹");
             buttonTanh.setText("tanh⁻¹");
-            buttonLog.setText("log₂");
-            buttonSin.setText("sin⁻¹");
-            buttonCos.setText("cos⁻¹");
-            buttonTan.setText("tan⁻¹");
-            buttonSinh.setText("sinh⁻¹");
-            buttonCosh.setText("cosh⁻¹");
-            buttonTanh.setText("tanh⁻¹");
             secondFlag = true;
         } else {
             buttonEx.setText("eˣ");
@@ -389,11 +382,13 @@ public class MainActivity extends AppCompatActivity {
     /* 라디안 */
     public void onClick_RAD(View v){
         if(!radFlag){
-            radText.setText("Radian ");
+            radText.setText("Rad ");
+            buttonRadian.setText("Deg");
             radFlag = true;
         }
         else{
             radText.setText("");
+            buttonRadian.setText("Rad");
             radFlag = false;
         }
         playSound();
@@ -757,9 +752,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{   //디그리 입력
                     if (!secondFlag)
-                        answer = String.valueOf(Math.sin(Double.parseDouble(answer)* Math.PI/180));
+                        answer = String.valueOf(Math.sin(Double.parseDouble(answer)* Math.PI/180.0));
                     else
-                        answer = String.valueOf(Math.asin(Double.parseDouble(answer)* Math.PI/180));
+                        answer = String.valueOf(Math.asin(Double.parseDouble(answer))* 180.0 / Math.PI);
                 }
                 break;
             case R.id.buttonCos:
@@ -772,9 +767,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{   //디그리 입력
                     if (!secondFlag)
-                        answer = String.valueOf(Math.cos(Double.parseDouble(answer)* Math.PI/180));
+                        answer = String.valueOf(Math.cos(Double.parseDouble(answer)* Math.PI/180.0));
                     else
-                        answer = String.valueOf(Math.acos(Double.parseDouble(answer)* Math.PI/180));
+                        answer = String.valueOf(Math.acos(Double.parseDouble(answer)* 180.0 / Math.PI));
                 }
                 break;
             case R.id.buttonTan:
@@ -787,9 +782,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{   //디그리 입력
                     if (!secondFlag)
-                        answer = String.valueOf(Math.tan(Double.parseDouble(answer)* Math.PI/180));
+                        answer = String.valueOf(Math.tan(Double.parseDouble(answer)* Math.PI/180.0));
                     else
-                        answer = String.valueOf(Math.atan(Double.parseDouble(answer)* Math.PI/180));
+                        answer = String.valueOf(Math.atan(Double.parseDouble(answer)* 180.0 / Math.PI));
                 }
                 break;
             case R.id.buttonSinh:
