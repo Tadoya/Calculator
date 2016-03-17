@@ -16,7 +16,6 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private String cnt="0", ac="AC";
     private boolean landscapeMode;
     String cntTemp="0";
@@ -243,6 +242,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClick_Num(View v){
         if(number.equals("0")) {
             number="";
+        }else if(number.equals("-0")){
+            number = "-";
         }
         if(caled){  // 계산 후(=) 숫버자튼을 눌렀을 시 number초기화
             number = "";
@@ -320,9 +321,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.buttonPlusMinus:
                 answer = textView.getText().toString();
-                if (answer.equals("0")) break;
-                    // 음수일 때
-                else if (answer.charAt(0) == '-') {
+                if (answer.charAt(0) == '-') {
                     answer = answer.replaceFirst("-", "");
                     number = number.replaceFirst("-", "");
                 } else {
@@ -739,7 +738,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.buttonFactorial:
                 answer = textView.getText().toString();
                 if(Double.parseDouble(answer) % 1 == 0)
-                    answer = String.valueOf(factorial((int)Double.parseDouble(answer)));
+                    answer = String.valueOf(factorial(Double.parseDouble(answer)));
                 else errorFlag = true;
                 break;
             case R.id.buttonSin:
@@ -934,7 +933,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public int factorial(int i){
+
+    public double factorial(double i){
         if(i==0 || i==1) return 1;
         else{
             return (i*factorial(i-1));
