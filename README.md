@@ -1,3 +1,3 @@
 # Calculator
 
-iOS style calculator
+iOS style android calculator
